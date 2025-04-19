@@ -1,65 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bank App</title>
   <link rel="stylesheet" href="styles.css" />
   <script src="app.js" defer></script>
 </head>
+
 <body>
   <div id="app">Loading...</div>
 
-  <!-- Task #1: Login and Register Template -->
+  <!-- Task #1, update the login template -->
   <template id="login">
-    <h1>Bank App</h1>
-    <section>
-      <h2>Login</h2>
-      <form id="loginForm">
-        <label for="username">Username</label>
-        <input id="username" name="user" type="text" required maxlength="20" />
-        <button type="submit">Login</button>
-        <div class="error" id="loginError"></div>
-      </form>
+    <section class="login-page">
+      <div class="login-container">
+        <div class="login-content">
 
-      <hr />
-      <h2>Register</h2>
-      <!-- Task #2: Registration form to POST to API -->
-      <form id="registerForm" action="javascript:register()">
-        <label for="user">Username (required)</label>
-        <input id="user" name="user" type="text" required maxlength="20" />
+          <h1 class="login-title">Bank App</h1>
 
-        <label for="currency">Currency (required)</label>
-        <input id="currency" name="currency" type="text" value="$" required maxlength="5" />
+          <form id="loginForm">
+            <h2>Login</h2>
+            <label for="username">Username</label>
+            <input id="username" name="user" type="text" autocomplete="username" />
+            <button type="submit">Login</button>
 
-        <label for="description">Description</label>
-        <input id="description" name="description" type="text" maxlength="100" />
+            <!-- Customization: Error display box -->
+            <div id="loginError" class="error-box"></div>
+          </form>
 
-        <label for="balance">Current balance</label>
-        <input id="balance" name="balance" type="number" value="0" />
+          <hr class="login-separator" />
+          <span>OR</span>
 
-        <button type="submit">Register</button>
-        <div class="error" id="registerError"></div>
-      </form>
+          <form id="registerForm">
+            <h2>Register</h2>
+
+            <label for="user">Username (required)</label>
+            <input id="user" name="user" type="text" maxlength="20" required />
+
+            <label for="currency">Currency (required)</label>
+            <input id="currency" name="currency" type="text" value="$" maxlength="5" required />
+
+            <label for="description">Description</label>
+            <input id="description" name="description" type="text" maxlength="100" />
+
+            <label for="balance">Current balance</label>
+            <input id="balance" name="balance" type="number" value="0" />
+
+            <button type="submit">Register</button>
+
+            <!-- Customization: Registration error box -->
+            <div id="registerError" class="error-box"></div>
+          </form>
+        </div>
+      </div>
     </section>
   </template>
 
-  <!-- Task #3: Dashboard Template -->
   <template id="dashboard">
-    <header>
-      <h1>Welcome to Your Bank</h1>
-      <button id="logoutBtn">Logout</button>
+    <header class="dashboard-header">
+      <h1 class="dashboard-title">Bank App</h1>
+      <button onclick="navigate('/login')">Logout</button>
     </header>
+    <section class="balance">
+      Balance: <span id="balance"></span>
+    </section>
     <section>
-      <p><strong>Balance:</strong> <span id="balanceDisplay"></span></p>
-      <h2>Transactions</h2>
-      <table>
+      <h2 class="transactions-title">Transactions</h2>
+      <table class="transactions-table">
         <thead>
-          <tr><th>Date</th><th>Object</th><th>Amount</th></tr>
+          <tr>
+            <th>Date</th>
+            <th>Object</th>
+            <th>Amount</th>
+          </tr>
         </thead>
-        <tbody id="transactionsBody"></tbody>
+        <tbody id="transactions"></tbody>
       </table>
     </section>
   </template>
+
 </body>
+
 </html>
